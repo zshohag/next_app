@@ -1,6 +1,4 @@
-
 // // components/SidebarComponent.js
-
 
 // import Link from "next/link";
 
@@ -82,8 +80,6 @@
 
 // export default SidebarComponent;
 
-
-
 // // app/dashboard/layout.js
 // "use client";
 // import { useState } from "react";
@@ -132,3 +128,31 @@
 // };
 
 // export default DashboardLayout;
+
+// {
+//   "name": "next-app",
+//   "version": "0.1.0",
+//   "private": true,
+//   "scripts": {
+//     "dev": "next dev",
+//     "build": "next build",
+//     "start": "next start",
+//     "lint": "next lint"
+//   },
+//   "dependencies": {
+//     "daisyui": "^4.12.14",
+//     "mongodb": "^6.10.0",
+//     "next": "15.0.3",
+//     "next-auth": "^4.24.10",
+//     "react": "19.0.0-rc-66855b96-20241106",
+//     "react-dom": "19.0.0-rc-66855b96-20241106",
+//     "react-icons": "^5.3.0",
+//     "sweetalert2": "^11.14.5"
+//   },
+//   "devDependencies": {
+//     "eslint": "^8",
+//     "eslint-config-next": "15.0.3",
+//     "postcss": "^8",
+//     "tailwindcss": "^3.4.1"
+//   }
+// }
