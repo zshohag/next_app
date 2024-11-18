@@ -33,7 +33,6 @@
 //   );
 // }
 
-
 // import localFont from "next/font/local";
 // import "./globals.css";
 // import ClientLayout from "@/components/ClientLayout";
@@ -68,13 +67,12 @@
 //   );
 // }
 
-
-
 "use client"; // Enable client-side rendering to use hooks like usePathname
 import { usePathname } from "next/navigation";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar/Navbar";
+//import Navbar from "@/components/shared/Navbar/Navbar";
+import Navbar from "../components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/Footer/Footer";
 
 const geistSans = localFont({
@@ -127,8 +125,6 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-
 
 // "use client"; // Enable client-side rendering to use hooks like usePathname
 // import { usePathname } from "next/navigation";
@@ -193,8 +189,6 @@ export default function RootLayout({ children }) {
 //   );
 // }
 
-
-
 // "use client"; // Enable client-side rendering to use hooks like usePathname
 // import { usePathname } from "next/navigation";
 // import localFont from "next/font/local";
@@ -238,11 +232,11 @@ export default function RootLayout({ children }) {
 
 //   return (
 //     <html lang="en">
-      // <Head>
-      //   <title>{pageTitle}</title>
-      //   <meta name="description" content={`Explore ${pageTitle}`} />
-      //   {/* Add any other meta tags you need here */}
-      // </Head>
+// <Head>
+//   <title>{pageTitle}</title>
+//   <meta name="description" content={`Explore ${pageTitle}`} />
+//   {/* Add any other meta tags you need here */}
+// </Head>
 //       <body
 //         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 //       >
