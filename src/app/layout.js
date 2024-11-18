@@ -72,8 +72,8 @@ import { usePathname } from "next/navigation";
 import localFont from "next/font/local";
 import "./globals.css";
 //import Navbar from "@/components/shared/Navbar/Navbar";
-import Navbar from "../components/shared/Navbar/Navbar";
-import Footer from "../components/shared/Footer/Footer";
+import Navbar from "../components/shared/NavBar/NavBar.jsx";
+import Footer from "../components/shared/Footer/Footer.jsx";
 //import Footer from "@/components/shared/Footer/Footer";
 
 const geistSans = localFont({
