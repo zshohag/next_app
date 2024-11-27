@@ -14,4 +14,8 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"], // Specify available themes
+    defaultTheme: "light", // Set light as the default
+  },
 };
