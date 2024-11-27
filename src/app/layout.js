@@ -74,6 +74,7 @@ import "./globals.css";
 //import Navbar from "@/components/shared/Navbar/Navbar";
 import Navbar from "../components/shared/NavBar/NavBar.jsx";
 import Footer from "../components/shared/Footer/Footer.jsx";
+import AuthProvider from "@/services/AuthProvider";
 //import Footer from "@/components/shared/Footer/Footer";
 
 const geistSans = localFont({
@@ -111,7 +112,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light" >
       <head>
         <title>{pageTitle}</title>
         <meta name="description" content="next app" />
@@ -119,9 +120,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {!isDashboard && <Navbar />}
-        <main>{children}</main>
-        {!isDashboard && <Footer />}
+        <AuthProvider>
+          {!isDashboard && <Navbar />}
+          <main>{children}</main>
+          {!isDashboard && <Footer />}
+        </AuthProvider>
       </body>
     </html>
   );
