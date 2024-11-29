@@ -112,7 +112,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en"  data-theme="light" >
       <head>
         <title>{pageTitle}</title>
         <meta name="description" content="next app" />
