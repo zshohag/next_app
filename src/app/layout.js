@@ -71,11 +71,10 @@
 import { usePathname } from "next/navigation";
 import localFont from "next/font/local";
 import "./globals.css";
-//import Navbar from "@/components/shared/Navbar/Navbar";
 import Navbar from "../components/shared/NavBar/NavBar.jsx";
 import Footer from "../components/shared/Footer/Footer.jsx";
 import AuthProvider from "@/services/AuthProvider";
-//import Footer from "@/components/shared/Footer/Footer";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -92,6 +91,10 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
 
   // Dynamic title change
 
@@ -112,7 +115,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en"  data-theme="light" >
+    <html lang="en" data-theme="light">
       <head>
         <title>{pageTitle}</title>
         <meta name="description" content="next app" />
