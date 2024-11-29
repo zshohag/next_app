@@ -74,6 +74,7 @@ import "./globals.css";
 import Navbar from "../components/shared/NavBar/NavBar.jsx";
 import Footer from "../components/shared/Footer/Footer.jsx";
 import AuthProvider from "@/services/AuthProvider";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -91,6 +92,13 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
   // Dynamic title change
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
+
+
+
 
   let pageTitle = "Next App";
 
