@@ -2,7 +2,7 @@ import ProductHomePage from "./products/page";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-white" >
       <div>
         <ProductHomePage />
       </div>

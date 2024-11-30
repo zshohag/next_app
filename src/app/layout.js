@@ -74,8 +74,6 @@ import "./globals.css";
 import Navbar from "../components/shared/NavBar/NavBar.jsx";
 import Footer from "../components/shared/Footer/Footer.jsx";
 import AuthProvider from "@/services/AuthProvider";
-import { useEffect } from "react";
-
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -93,13 +91,6 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
   // Dynamic title change
-
- 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "light"); // Ensure light theme is applied
-  }, []);
-
-
 
   let pageTitle = "Next App";
 
@@ -122,8 +113,6 @@ export default function RootLayout({ children }) {
       <head>
         <title>{pageTitle}</title>
         <meta name="description" content="next app" />
-        <meta name="color-scheme" content="light only" />
-
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

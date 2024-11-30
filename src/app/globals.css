@@ -1,46 +1,13 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff; /* Default light theme background */
-  --foreground: #171717; /* Default light theme foreground */
-}
-
-[data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-[data-theme="light"] {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-/* Add fallback for users with prefers-color-scheme */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
