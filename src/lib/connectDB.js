@@ -13,7 +13,7 @@ export const connectDB = async () => {
       },
     });
 
-    db = client.db('car-doctor')
+    db = client.db('nextECommerce')
     return db;
   } catch (error) {
     console.log({error});

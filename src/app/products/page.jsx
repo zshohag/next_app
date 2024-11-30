@@ -28,9 +28,9 @@ const ProductHomePage = () => {
                 ${product.price}
               </p>
             </div>
-            <div className="flex justify-center w-2/3 mx-auto mt-4">
+            <div className="flex justify-center  mx-auto w-3/4 mt-4">
               <Link  href={`/products/${product.id}`}>
-                <button className=" btn btn-sm bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                <button className=" btn btn-sm bg-gray-200 text-black py-2 rounded-lg hover:bg-gray-200">
                   View Details
                 </button>
               </Link>

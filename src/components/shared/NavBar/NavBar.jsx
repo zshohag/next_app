@@ -2,10 +2,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
+import { signOut, useSession } from "next-auth/react";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { data: session, status } = useSession();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -72,9 +75,28 @@ const NavBar = () => {
               <FaShoppingCart className="w-5 h-5 text-gray-800" />
             </div>
           </Link>
-          <Link href="/login">
+
+          {status === "authenticated" ? (
+            <>
+              <span className="text-gray-800 font-medium">
+                {session.user?.name || "User"}
+              </span>
+              <button
+                onClick={() => signOut()}
+                className="btn btn-sm bg-black text-white"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <Link href="/login">
+              <button className="btn btn-sm bg-black text-white">Login</button>
+            </Link>
+          )}
+
+          {/* <Link href="/login">
             <button className="btn btn-sm bg-black text-white">Login</button>
-          </Link>
+          </Link> */}
 
           <div className="lg:hidden">
             <div className="dropdown dropdown-end">
