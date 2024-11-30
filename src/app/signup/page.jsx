@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"; // Import useRouter from next/navig
 import Swal from "sweetalert2"; // Import SweetAlert2 for alerts
 import SocialSignin from "@/components/shared/SocialSignin/SocialSignin";
 
-const Page = () => {
+const SignUpPage = () => {
   const {
     register,
     handleSubmit,
@@ -191,4 +191,4 @@ const Page = () => {
   );
 };
 
-export default Page; // Ensure to export the Page component as default
+export default SignUpPage; // Ensure to export the Page component as default

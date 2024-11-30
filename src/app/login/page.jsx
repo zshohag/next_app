@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import SocialSignin from "@/components/shared/SocialSignin/SocialSignin";
 
-const Page = () => {
+const LoginPage = () => {
   const {
     register,
     handleSubmit,
@@ -136,5 +136,5 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default LoginPage;
 
