@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           {!isDashboard && <Navbar />}
-          <main>{children}</main>
+          <main  className="bg-gray-100"  >{children}</main>
           {!isDashboard && <Footer />}
         </AuthProvider>
       </body>
