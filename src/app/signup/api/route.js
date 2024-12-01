@@ -1,5 +1,3 @@
-
-
 import { connectDB } from "@/lib/connectDB"; // Adjust the import path as needed
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";

@@ -62,6 +62,7 @@ const LoginPage = () => {
         width="400" // Reduce image width
         alt="login image"
         className="max-w-full h-auto"
+        
       />
     </div>
 
