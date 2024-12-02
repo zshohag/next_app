@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
 import Swal from "sweetalert2"; // Import SweetAlert2 for alerts
 import SocialSignin from "@/components/shared/SocialSignin/SocialSignin";
+import { useSearchParams } from "next/navigation";
 
 const SignUpPage = () => {
   const {
@@ -15,10 +16,13 @@ const SignUpPage = () => {
     formState: { errors },
     reset,
   } = useForm(); // Initialize the form
-  const router = useRouter(); // Initialize the router
   const [showPassword, setShowPassword] = useState(false); // Password visibility state
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Confirm password visibility state
   const [loading, setLoading] = useState(false); // Loading state
+
+  const router = useRouter(); // Initialize the router
+  const searchParams = useSearchParams(); // Access search params
+  const redirectTo = searchParams.get("redirect"); // Get the redirect query param
 
   const onSubmit = async (data) => {
     // Function to handle form submission
@@ -43,7 +47,7 @@ const SignUpPage = () => {
       if (response.ok) {
         Swal.fire("Success", "User created successfully!", "success"); // Alert on success
         reset(); // Reset the form fields
-        router.push("/"); // Navigate to the home page
+        router.push(redirectTo || "/"); // Redirect to the intended page or home
       } else {
         Swal.fire("Error", result.message, "error"); // Alert on error
       }
