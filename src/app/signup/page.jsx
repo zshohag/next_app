@@ -24,6 +24,8 @@ const SignUpPage = () => {
   const searchParams = useSearchParams(); // Access search params
   const redirectTo = searchParams.get("redirect"); // Get the redirect query param
 
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const onSubmit = async (data) => {
     // Function to handle form submission
     if (data.password !== data.confirmPassword) {
@@ -33,8 +35,14 @@ const SignUpPage = () => {
 
     setLoading(true); // Set loading to true when starting the API call
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${apiBaseUrl}/signup/api`, {
+      // const response = await fetch(`${apiBaseUrl}/signup/api`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+      const response = await fetch("http://localhost:3000/signup/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
