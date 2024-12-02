@@ -29,7 +29,8 @@ const SignUpPage = () => {
 
     setLoading(true); // Set loading to true when starting the API call
     try {
-      const response = await fetch("/signup/api", {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiBaseUrl}/signup/api`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
