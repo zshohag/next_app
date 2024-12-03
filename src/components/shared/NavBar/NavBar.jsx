@@ -90,7 +90,7 @@ const NavBar = () => {
             </>
           ) : (
             <Link href="/login">
-              <button className="btn btn-sm bg-black text-white">Login</button>
+              <button className="btn btn-sm bg-black text-white">Sign In</button>
             </Link>
           )}
 

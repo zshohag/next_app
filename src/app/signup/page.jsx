@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation"; // Import useRouter from next/navig
 import Swal from "sweetalert2"; // Import SweetAlert2 for alerts
 import SocialSignin from "@/components/shared/SocialSignin/SocialSignin";
 import { useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
+
+
 
 const SignUpPage = () => {
   const {
@@ -26,54 +29,96 @@ const SignUpPage = () => {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const onSubmit = async (data) => {
-    // Function to handle form submission
-    if (data.password !== data.confirmPassword) {
-      Swal.fire("Error", "Passwords do not match!", "error"); // Alert if passwords do not match
-      return; // Exit the function
-    }
+  // const onSubmit = async (data) => {
+  //   // Function to handle form submission
+  //   if (data.password !== data.confirmPassword) {
+  //     Swal.fire("Error", "Passwords do not match!", "error"); // Alert if passwords do not match
+  //     return; // Exit the function
+  //   }
 
-    setLoading(true); // Set loading to true when starting the API call
-    try {
-      // const response = await fetch(`${apiBaseUrl}/signup/api`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // });
-      const response = await fetch("http://localhost:3000/signup/api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+  //   setLoading(true); // Set loading to true when starting the API call
+  //   try {
+  //     const response = await fetch("/signup/api", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await response.json(); // Parse the response
+
+  //     if (response.ok) {
+  //       Swal.fire("Success", "User created successfully!", "success"); // Alert on success
+  //       reset(); // Reset the form fields
+  //       router.push(redirectTo || "/"); // Redirect to the intended page or home
+  //     } else {
+  //       Swal.fire("Error", result.message, "error"); // Alert on error
+  //     }
+  //   } catch (error) {
+  //     console.error("Error submitting form:", error); // Log any errors
+  //     Swal.fire("Error", "Something went wrong", "error"); // Alert on catch
+  //   } finally {
+  //     setLoading(false); // Set loading to false when the API call is finished
+  //   }
+  // };
+
+
+
+const onSubmit = async (data) => {
+  if (data.password !== data.confirmPassword) {
+    Swal.fire("Error", "Passwords do not match!", "error");
+    return;
+  }
+
+  setLoading(true);
+  try {
+    const response = await fetch("/signup/api", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      Swal.fire("Success", "User created successfully!", "success");
+
+      // Automatically log the user in after signup
+      const loginResponse = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
       });
 
-      const result = await response.json(); // Parse the response
-
-      if (response.ok) {
-        Swal.fire("Success", "User created successfully!", "success"); // Alert on success
-        reset(); // Reset the form fields
-        router.push(redirectTo || "/"); // Redirect to the intended page or home
+      if (loginResponse?.ok) {
+        router.push(redirectTo || "/"); // Redirect the user
       } else {
-        Swal.fire("Error", result.message, "error"); // Alert on error
+        Swal.fire("Error", "Failed to log in after signup", "error");
       }
-    } catch (error) {
-      console.error("Error submitting form:", error); // Log any errors
-      Swal.fire("Error", "Something went wrong", "error"); // Alert on catch
-    } finally {
-      setLoading(false); // Set loading to false when the API call is finished
+    } else {
+      Swal.fire("Error", result.message, "error");
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    Swal.fire("Error", "Something went wrong!", "error");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
+
 
   return (
     <div className="container px-4 sm:px-8 lg:px-24 mx-auto py-12 lg:py-24">
-      {loading && (
+      {/* {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50">
           <div className="loader">Loading...</div>
         </div>
-      )}
+      )} */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left side image section */}
         <div className="flex justify-center lg:justify-start">
@@ -180,11 +225,18 @@ const SignUpPage = () => {
               </p>
             )}
 
-            <button
+            {/* <button
               type="submit"
               className="w-full btn btn-primary mt-6 text-lg"
             >
               Sign Up
+            </button> */}
+            <button
+              type="submit"
+              className="w-full btn btn-primary mt-6 text-lg"
+              disabled={loading} // Disable the button while loading
+            >
+              {loading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>
 
