@@ -13,6 +13,33 @@ export const getProducts = async () => {
 };
 
 
+
+// import axios from "axios";
+
+// export const getProducts = async () => {
+//   try {
+//     const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/products/api/get-all`);
+//     return res.data;
+//   } catch (error) {
+//     console.error("Error fetching products from API:", error?.message || error);
+//     return { products: [] }; // Ensure consistent return structure
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // export const getServicesDetails = async (id) => {
 //   try {
 //     const res = await axios.get(

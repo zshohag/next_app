@@ -144,7 +144,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/shared/NavBar/NavBar.jsx";
 import Footer from "../components/shared/Footer/Footer.jsx";
-import AuthProvider from "@/services/AuthProvider";
+import AuthProvider from "@/context/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Head from "next/head";
 
