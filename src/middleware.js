@@ -40,25 +40,57 @@
 //     return NextResponse.next(); // Proceed with the request
 //   }
 
+//////////////////////
+
+
+
+// import { cookies } from "next/headers";
+// import { NextResponse } from "next/server";
+
+// export const middleware = async (request) => {
+//   const token = cookies(request).get("next-auth.session-token");
+//   console.log(token);
+//   const pathname = request.nextUrl.pathname;
+//   if (pathname.includes("api")) {
+//     return NextResponse.next();
+//   }
+
+//   if (!token) {
+//     return NextResponse.redirect(
+//       new URL(`/login?redirect=${pathname}`, request.url)
+//     );
+//   }
+//   return NextResponse.next();
+// };
+
+// export const config = {
+//   matcher: ["/dashboard", "/products/:id"],
+// };
+
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const middleware = async (request) => {
   const token = cookies(request).get("next-auth.session-token");
-  console.log(token);
+  console.log("Middleware triggered for:", request.nextUrl.pathname);
+  console.log("Token found:", token);
+
   const pathname = request.nextUrl.pathname;
+
+  // Skip API routes
   if (pathname.includes("api")) {
     return NextResponse.next();
   }
 
+  // Redirect to login if no token is present
   if (!token) {
-    return NextResponse.redirect(
-      new URL(`/login?redirect=${pathname}`, request.url)
-    );
+    const redirectURL = new URL(`/login?redirect=${encodeURIComponent(pathname)}`, request.nextUrl.origin);
+    return NextResponse.redirect(redirectURL);
   }
+
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/dashboard", "/products/:id"],
+  matcher: ["/dashboard/:path*", "/products/:id"],
 };

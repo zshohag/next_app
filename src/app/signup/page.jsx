@@ -133,7 +133,7 @@ const onSubmit = async (data) => {
 
         {/* Right side form section */}
         <div className="border-2 p-4 md:p-6 bg-white rounded-lg shadow-lg w-full max-w-md mx-auto">
-          <h6 className="text-xl md:text-2xl font-semibold text-primary text-center mb-6">
+          <h6 className="text-xl md:text-2xl font-semibold text-black text-center mb-6">
             Sign Up
           </h6>
 
@@ -224,28 +224,21 @@ const onSubmit = async (data) => {
                 {errors.confirmPassword.message}
               </p>
             )}
-
-            {/* <button
-              type="submit"
-              className="w-full btn btn-primary mt-6 text-lg"
-            >
-              Sign Up
-            </button> */}
             <button
               type="submit"
-              className="w-full btn btn-primary mt-6 text-lg"
+              className="w-full btn bg-black text-white hover:text-black mt-6 text-lg"
               disabled={loading} // Disable the button while loading
             >
               {loading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>
 
-          <div className="text-center mt-6">
+          <div className="text-center mt-4">
             <h6 className="text-sm text-gray-500 my-4">or sign up with</h6>
             <SocialSignin />
-            <h6 className="text-sm">
+            <h6 className="text-sm ">
               Already have an account?{" "}
-              <Link className="text-primary font-semibold" href="/login">
+              <Link className="text-black font-semibold" href="/login">
                 Sign In
               </Link>
             </h6>

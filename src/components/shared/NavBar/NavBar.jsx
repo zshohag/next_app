@@ -83,14 +83,14 @@ const NavBar = () => {
               </span>
               <button
                 onClick={() => signOut()}
-                className="btn btn-sm bg-black text-white"
+                className="btn btn-sm bg-black text-white hover:text-black "
               >
                 Sign Out
               </button>
             </>
           ) : (
             <Link href="/login">
-              <button className="btn btn-sm bg-black text-white">Sign In</button>
+              <button className="btn btn-sm bg-black hover:text-black text-white">Sign In</button>
             </Link>
           )}
 
