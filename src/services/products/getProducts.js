@@ -13,15 +13,15 @@ export const getProducts = async () => {
 };
 
 
-export const getProductDetails = async () => {
+export const getProductDetails = async (id) => {
   try {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/services/products/api/${id}`
     );
     return res.data;
   } catch (error) {
-    console.error("Error fetching services:", error);
-    return { products: [] }; // Return a consistent structure for the client
+    console.error("Error fetching product:", error);
+    return { product: [] }; // Return a consistent structure for the client
   }
 };
 
