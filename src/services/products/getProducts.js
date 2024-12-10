@@ -3,7 +3,20 @@ import axios from "axios";
 export const getProducts = async () => {
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/services/api/get-all`
+      `${process.env.NEXT_PUBLIC_API_URL}/services/products/api/get-all`
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return { products: [] }; // Return a consistent structure for the client
+  }
+};
+
+
+export const getProductDetails = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/services/products/api/${id}`
     );
     return res.data;
   } catch (error) {
@@ -25,18 +38,6 @@ export const getProducts = async () => {
 //     return { products: [] }; // Ensure consistent return structure
 //   }
 // };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

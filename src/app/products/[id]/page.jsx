@@ -7,7 +7,7 @@ const ProductPage = ({ params }) => {
 
   // Find the product by id
   // const product = products.find((item) => item.id.toString() === id);
-  const product = products.find((item) => item.id == id);
+  const product = products.find((item) => item._id == id);
 
   // If product not found, show a message
   if (!product) {
