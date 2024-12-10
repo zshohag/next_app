@@ -54,7 +54,8 @@
 
 import React from "react";
 import ProductCard from "../cards/ProductCard";
-import { getProducts } from "@/services/products/getProducts";
+import { getProducts } from "@/products/getProducts";
+
 
 const Products = async () => {
   // Fetch products data server-side
