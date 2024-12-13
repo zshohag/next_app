@@ -1,3 +1,5 @@
+////////
+
 // "use client";
 // import Image from "next/image";
 // import Link from "next/link";
@@ -6,7 +8,7 @@
 // import { useState } from "react";
 // import { signIn } from "next-auth/react";
 // import Swal from "sweetalert2";
-// import { useRouter } from "next/navigation";
+// import { useRouter, useSearchParams } from "next/navigation";
 // import SocialSignin from "@/components/shared/SocialSignin/SocialSignin";
 
 // const LoginPage = () => {
@@ -18,6 +20,7 @@
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [loading, setLoading] = useState(false); // Loading state
 //   const router = useRouter();
+//   const searchParams = useSearchParams(); // Get query parameters
 
 //   const onSubmit = async (data) => {
 //     setLoading(true); // Start loading
@@ -26,26 +29,29 @@
 //     const resp = await signIn("credentials", {
 //       email,
 //       password,
-//       redirect: false,
+//       redirect: false, // Do not let NextAuth handle redirection
 //     });
 
 //     setLoading(false); // Stop loading
 
 //     if (resp.ok) {
-//       // Show success message and navigate to home
+//       // Show success message
 //       Swal.fire({
 //         icon: "success",
 //         title: "Signed in successfully!",
 //         showConfirmButton: false,
 //         timer: 1500,
 //       });
-//       router.push("/"); // Navigate to home page
+
+//       // Navigate to the intended destination or home
+//       const callbackUrl = searchParams.get("path") || "/"; // Use `path` from query or default to `/`
+//       router.push(callbackUrl);
 //     } else {
 //       // Show error message
 //       Swal.fire({
 //         icon: "error",
 //         title: "Sign-in failed",
-//         text: resp.error,
+//         text: resp.error || "Invalid credentials",
 //         confirmButtonText: "Try Again",
 //       });
 //     }
@@ -58,8 +64,8 @@
 //         <div className="flex justify-center lg:justify-start">
 //           <Image
 //             src="/assets/images/login.png"
-//             height="400" // Reduce image height
-//             width="400" // Reduce image width
+//             height="400"
+//             width="400"
 //             alt="login image"
 //             className="max-w-full h-auto"
 //           />
@@ -112,7 +118,7 @@
 
 //             <button
 //               type="submit"
-//               className="w-full btn bg-black text-white hover:text-black  mt-6 text-lg"
+//               className="w-full btn bg-black text-white hover:text-black mt-6 text-lg"
 //               disabled={loading} // Disable while loading
 //             >
 //               {loading ? "Signing In..." : "Sign In"}
@@ -122,7 +128,7 @@
 //           <div className="text-center mt-4">
 //             <h6 className="text-sm text-gray-500 my-4">or sign in with</h6>
 //             <SocialSignin />
-//             <h6 className="text-sm  ">
+//             <h6 className="text-sm">
 //               Not have an account?{" "}
 //               <Link className="text-black font-semibold" href="/signup">
 //                 Sign Up
@@ -136,6 +142,7 @@
 // };
 
 // export default LoginPage;
+
 
 "use client";
 import Image from "next/image";
@@ -157,16 +164,24 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false); // Loading state
   const router = useRouter();
-  const searchParams = useSearchParams(); // Get query parameters
+  const searchParams = useSearchParams();
 
   const onSubmit = async (data) => {
     setLoading(true); // Start loading
     const { email, password } = data;
 
+    // Show loading alert
+    Swal.fire({
+      title: "Signing in...",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => Swal.showLoading(),
+    });
+
     const resp = await signIn("credentials", {
       email,
       password,
-      redirect: false, // Do not let NextAuth handle redirection
+      redirect: false, // Prevent NextAuth default redirect
     });
 
     setLoading(false); // Stop loading
@@ -180,15 +195,15 @@ const LoginPage = () => {
         timer: 1500,
       });
 
-      // Navigate to the intended destination or home
-      const callbackUrl = searchParams.get("path") || "/"; // Use `path` from query or default to `/`
+      // Redirect to the intended path or home
+      const callbackUrl = searchParams.get("redirect") || "/";
       router.push(callbackUrl);
     } else {
       // Show error message
       Swal.fire({
         icon: "error",
         title: "Sign-in failed",
-        text: resp.error || "Invalid credentials",
+        text: resp.error || "Invalid email or password",
         confirmButtonText: "Try Again",
       });
     }
@@ -203,7 +218,7 @@ const LoginPage = () => {
             src="/assets/images/login.png"
             height="400"
             width="400"
-            alt="login image"
+            alt="Login illustration"
             className="max-w-full h-auto"
           />
         </div>
