@@ -6,7 +6,7 @@
 
 // const ProductsLayout = ({ products }) => {
 //   const [searchTerm, setSearchTerm] = useState("");
-//   const [selectedCategory, setSelectedCategory] = useState("All Categories");
+//   const [selectedCategory, setSelectedCategory] = useState("All Categories"); // Default is "All Categories"
 
 //   // Extract unique categories from products
 //   const categories = Array.from(
@@ -25,24 +25,29 @@
 //   );
 
 //   return (
-//     <div className="flex flex-col lg:flex-row  gap-4">
+//     <div className="flex flex-col md:flex-row gap-4 w-full">
 //       {/* Sidebar for categories */}
-//       <div className="w-full lg:w-1/4">
+//       <div className="md:w-1/4">
 //         <CategorySidebar
-//           categories={[...categories]}
+//           categories={categories}
 //           selectedCategory={selectedCategory}
 //           setSelectedCategory={setSelectedCategory}
+//           setSearchTerm={setSearchTerm} // Pass setSearchTerm to handle search reset
 //         />
 //       </div>
 
 //       {/* Main Content Area */}
-//       <div className="flex-1">
+//       <main className="flex-1">
 //         {/* Search Bar */}
-//         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+//         <SearchBar
+//           searchTerm={searchTerm}
+//           setSearchTerm={setSearchTerm}s
+//           selectedCategory={selectedCategory}
+//         />
 
 //         {/* Products Grid */}
 //         <ProductsGrid products={filteredProducts} />
-//       </div>
+//       </main>
 //     </div>
 //   );
 // };
@@ -50,9 +55,11 @@
 // export default ProductsLayout;
 
 "use client";
+
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import CategorySidebar from "./CategorySidebar";
+import MobileCategoryMenu from "./MobileCategoryMenu";
 import ProductsGrid from "./ProductsGrid";
 
 const ProductsLayout = ({ products }) => {
@@ -76,9 +83,17 @@ const ProductsLayout = ({ products }) => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row gap-4">
+    <div className="flex flex-col md:flex-row gap-4 w-full">
+      {/* Mobile Menu */}
+      <MobileCategoryMenu
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        setSearchTerm={setSearchTerm}
+      />
+
       {/* Sidebar for categories */}
-      <div className="md:w-1/4">
+      <div className="hidden md:block md:w-1/4">
         <CategorySidebar
           categories={categories}
           selectedCategory={selectedCategory}
@@ -88,9 +103,13 @@ const ProductsLayout = ({ products }) => {
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 p-4">
         {/* Search Bar */}
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedCategory={selectedCategory}
+        />
 
         {/* Products Grid */}
         <ProductsGrid products={filteredProducts} />

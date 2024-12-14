@@ -14,6 +14,7 @@ const Banner = () => {
             smart home devices – all handpicked for quality and performance.
           </p>
         </div>
+       
       </div>
     );
   };

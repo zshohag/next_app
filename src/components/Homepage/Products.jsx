@@ -10,15 +10,10 @@ const Products = async () => {
   }
 
   return (
-    <div className="px-5">
-      <ProductsLayout products={products} />
+    <div className="py-2 ">
+        <ProductsLayout products={products} />
     </div>
   );
 };
 
 export default Products;
-
-
-
-
-

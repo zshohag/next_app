@@ -4,7 +4,7 @@ import Banner from './Banner';
 
 const Homepage = () => {
     return (
-        <div>
+        <div className='bg-white' >
             <Banner/>
             <Products/>
         </div>
@@ -12,3 +12,4 @@ const Homepage = () => {
 };
 
 export default Homepage;
+

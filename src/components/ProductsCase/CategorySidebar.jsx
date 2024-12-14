@@ -105,8 +105,9 @@ const CategorySidebar = ({
   return (
     <>
       {/* Mobile Menu */}
-      <div className="block md:hidden  border-b border-gray-300 bg-white sticky top-0 z-20">
-        <h2 className="text-lg font-bold mb-4 mt-2 ">Categories</h2>
+
+      {/* <div className="block md:hidden border-b border-gray-300 bg-white z-20 sticky top-[64px]">
+        <h2 className="text-lg font-bold mb-4 mt-2">Categories</h2>
         <ul className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <li
@@ -132,7 +133,7 @@ const CategorySidebar = ({
             All Categories
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Desktop Sidebar */}
       <div className="p-4 border-r border-gray-300 hidden md:block sticky top-[64px] h-screen overflow-y-auto">
