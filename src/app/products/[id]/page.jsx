@@ -7,32 +7,34 @@ export const metadata = {
   description: "Product Details Page",
 };
 
-console.log(getProductDetails);
+console.log("getProductDetails", getProductDetails);
 
 const ProductDetailsPage = async ({ params }) => {
   try {
+    console.log("Product ID:", params.id);
     // Fetch product details using the product ID
     const response = await getProductDetails(params.id);
-    console.log(response);
+    console.log("response", response);
 
-    if (!response.success) {
-      // Handle error if product fetching fails
-      return (
-        <div className="p-4 max-w-6xl mx-auto mt-24">
-          <h1 className="text-2xl font-bold text-center text-red-600">
-            {response.error || "Product not found"}
-          </h1>
-          <Link href="/">
-            <button className="btn btn-sm bg-gray-200 text-black mt-6 mx-auto block">
-              Go Back
-            </button>
-          </Link>
-        </div>
-      );
-    }
+    // if (!response.success) {
+    //   // Handle error if product fetching fails
+    //   return (
+    //     <div className="p-4 max-w-6xl mx-auto mt-24">
+    //       <h1 className="text-2xl font-bold text-center text-red-600">
+    //         {response.error || "Product not found"}
+    //       </h1>
+    //       <Link href="/">
+    //         <button className="btn btn-sm bg-gray-200 text-black mt-6 mx-auto block">
+    //           Go Back
+    //         </button>
+    //       </Link>
+    //     </div>
+    //   );
+    // }
 
     // Extract product data
     const product = response.product;
+    console.log(product);
 
     return (
       <div className="p-4 max-w-6xl mx-auto mt-24">
