@@ -12,6 +12,26 @@ export const getProducts = async () => {
   }
 };
 
+export const getProductDetails = async (_id) => {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/products/api/${_id}`
+    );
+
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
+    console.log(res);
+
+    // Extract the inner 'product' key here
+    const product = res.data.product;
+    console.log(product);
+
+    return { success: true, product }; // Return the unwrapped product
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return { success: false, product: null, error: "Failed to fetch product" };
+  }
+};
 
 // export const getProductDetails = async (id) => {
 //   try {
@@ -24,20 +44,3 @@ export const getProducts = async () => {
 //     return { success: false, product: null, error: "Failed to fetch product" };
 //   }
 // };
-
-export const getProductDetails = async (id) => {
-  try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/api/${id}`
-    );
-
-    // Extract the inner 'product' key here
-    const product = res.data.product;
-
-    return { success: true, product }; // Return the unwrapped product
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    return { success: false, product: null, error: "Failed to fetch product" };
-  }
-};
-

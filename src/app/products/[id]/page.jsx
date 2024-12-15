@@ -2,6 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProductDetails } from "@/products/getProducts";
 
+export const metadata = {
+  title: "Product Details",
+  description: "Product Details Page",
+};
+
+console.log(getProductDetails);
+
 const ProductDetailsPage = async ({ params }) => {
   try {
     // Fetch product details using the product ID
@@ -44,7 +51,7 @@ const ProductDetailsPage = async ({ params }) => {
           {/* Details Section */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
-            
+
             <p className="text-lg mb-2">Category: {product.category}</p>
             <p className="mb-4">{product.description}</p>
             <p className="text-md mb-2">In Stock: {product.stock}</p>

@@ -39,6 +39,7 @@ export const GET = async (request, { params }) => {
 
     // Fetch the single product
     const product = await productsCollection.findOne({ _id: productId });
+    console.log(product)
 
     if (!product) {
       return NextResponse.json(
