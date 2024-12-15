@@ -12,10 +12,10 @@ export const getProducts = async () => {
   }
 };
 
-export const getProductDetails = async (_id) => {
+export const getProductDetails = async (id) => {
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/api/${_id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/products/api/${id}`
     );
 
     console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
