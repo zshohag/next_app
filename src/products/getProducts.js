@@ -18,13 +18,8 @@ export const getProductDetails = async (id) => {
       `${process.env.NEXT_PUBLIC_API_URL}/products/api/${id}`
     );
 
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
-
-    console.log(res);
-
     // Extract the inner 'product' key here
     const product = res.data.product;
-    console.log(product);
 
     return { success: true, product }; // Return the unwrapped product
   } catch (error) {
