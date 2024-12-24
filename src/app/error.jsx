@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -12,10 +12,8 @@ const ErrorPage = () => (
       <p className="text-lg text-gray-600 mb-8">
         We couldn’t find the page you were looking for or there was an error.
       </p>
-      <Link href="/">
-        <a className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition duration-200">
-          Go Back Home
-        </a>
+      <Link href="/" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition duration-200">
+        Go Back Home
       </Link>
     </div>
   </div>

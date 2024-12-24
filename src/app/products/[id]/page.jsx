@@ -7,7 +7,6 @@ export const metadata = {
   description: "Product Details Page",
 };
 
-console.log("getProductDetails", getProductDetails);
 
 const ProductDetailsPage = async ({ params }) => {
   try {
@@ -34,7 +33,7 @@ const ProductDetailsPage = async ({ params }) => {
 
     // Extract product data
     const product = response.product;
-    console.log(product);
+    //console.log(product);
 
     const { _id, name, description, category, image, price, stock, ratings } =
       product;
@@ -75,7 +74,7 @@ const ProductDetailsPage = async ({ params }) => {
                 </Link>
               </div>
               <div>
-                <Link href={`/Checkout/${_id}`}>
+                <Link href={`/checkout/${_id}`}>
                   <button className="btn btn-sm bg-gray-200 text-black mt-6">
                     Checkout
                   </button>
