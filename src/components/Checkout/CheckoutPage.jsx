@@ -418,8 +418,19 @@ const CheckoutPage = ({ product, params }) => {
     };
     console.log(newOrder);
     try {
+      // const response = await fetch(
+      //   "http://localhost:3000/api/checkout/new-order",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(newOrder),
+      //   }
+      // );
+
       const response = await fetch(
-        "https://next-app-six-ebon.vercel.app/checkout/api/new-order",
+        "http://localhost:3000/checkout/api/new-order",
         {
           method: "POST",
           headers: {
@@ -499,8 +510,9 @@ const CheckoutPage = ({ product, params }) => {
                 max={product.stock}
                 value={quantity}
                 onChange={handleQuantityChange}
-                className="input w-16 text-center"
+                className="input w-16 text-center border-none focus:ring-0 focus:outline-none py-2"
               />
+
               <button
                 type="button"
                 onClick={() =>
