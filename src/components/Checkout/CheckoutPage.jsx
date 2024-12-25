@@ -419,7 +419,7 @@ const CheckoutPage = ({ product, params }) => {
     console.log(newOrder);
     try {
       const response = await fetch(
-        "https://next-app-six-ebon.vercel.app/checkout/api/newOrder",
+        "https://next-app-six-ebon.vercel.app/checkout/api/new-order",
         {
           method: "POST",
           headers: {
@@ -578,6 +578,20 @@ const CheckoutPage = ({ product, params }) => {
                     <p className="text-red-500">{errors.phone.message}</p>
                   )}
                 </div>
+              </div>
+
+              {/* Date Field */}
+              <div className="form-control">
+                <label className="label">Date</label>
+                <input
+                  type="date"
+                  defaultValue={new Date().toISOString().split("T")[0]} // Set current date
+                  {...register("date", { required: "Date is required" })}
+                  className="input input-bordered w-full"
+                />
+                {errors.date && (
+                  <p className="text-red-500">{errors.date.message}</p>
+                )}
               </div>
 
               {/* Present Address */}

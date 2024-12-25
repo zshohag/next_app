@@ -12,8 +12,22 @@ const ProductDetailsPage = async ({ params }) => {
   try {
     //console.log("Product ID:", params.id);
     // Fetch product details using the product ID
-    const response = await getProductDetails(params.id);
+    //const response = await getProductDetails(params.id);
     //console.log("response", response);
+
+
+     // Ensure `params` is properly awaited before use
+     const { id } = await params;
+
+     // Fetch product details using the product ID
+     const response = await getProductDetails(id);
+
+
+
+
+
+
+
 
     if (!response.success) {
       // Handle error if product fetching fails

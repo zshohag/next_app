@@ -13,7 +13,7 @@ export const POST = async (request) => {
         { status: 400 } // Bad Request
       );
     }
-
+ 
     // Connect to the database
     const db = await connectDB();
     const ordersCollection = db.collection("orders");
