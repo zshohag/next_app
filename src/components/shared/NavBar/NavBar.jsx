@@ -33,6 +33,11 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
+        <Link href="/my-orders" onClick={() => setMenuOpen(false)}>
+          My Orders
+        </Link>
+      </li>
+      <li>
         <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
           Dashboard
         </Link>

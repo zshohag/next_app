@@ -413,22 +413,12 @@ const CheckoutPage = ({ product, params }) => {
       productName: product.name,
       productID: product._id,
       category: product.category,
+      image:product.image,
       price: product.price,
       quantity: confirmedQuantity, // Use confirmed quantity
     };
     console.log(newOrder);
     try {
-      // const response = await fetch(
-      //   "http://localhost:3000/api/checkout/new-order",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(newOrder),
-      //   }
-      // );
-
       const response = await fetch(
         "http://localhost:3000/checkout/api/new-order",
         {
