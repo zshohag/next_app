@@ -92,6 +92,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Loading from "@/app/loading"; // Adjust the import path if necessary
+import Swal from "sweetalert2";
 
 const Page = () => {
   const { data: session } = useSession();
@@ -111,6 +112,58 @@ const Page = () => {
       console.error("Failed to load orders:", error);
     } finally {
       setLoading(false); // End loading
+    }
+  };
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    const confirmDelete = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+    });
+
+    if (confirmDelete.isConfirmed) {
+      try {
+        const deleted = await fetch(
+          `http://localhost:3000/my-orders/api/order/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        const resp = await deleted.json();
+        console.log(resp);
+
+        if (resp?.response?.deletedCount > 0) {
+          await Swal.fire({
+            title: "Deleted!",
+            text: "The order has been deleted.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
+          loadData(); // Reload the data after successful deletion
+        } else {
+          await Swal.fire({
+            title: "Failed!",
+            text: "The order could not be deleted. Please try again.",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+          });
+        }
+      } catch (error) {
+        console.error("Error during delete operation:", error);
+        await Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again later.",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+        });
+      }
     }
   };
 
@@ -161,7 +214,12 @@ const Page = () => {
                       <button className="btn btn-ghost bg-black text-white btn-xs">
                         Edit
                       </button>
-                      <button className="btn btn-ghost btn-xs">Delete</button>
+                      <button
+                        onClick={() => handleDelete(order._id)}
+                        className="btn btn-ghost btn-xs"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
