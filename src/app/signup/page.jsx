@@ -33,11 +33,21 @@ const SignUpPage = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("/signup/api", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      // const response = await fetch("/signup/api", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
+
+      // Build the API URL dynamically using the environment variable
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/signup/api`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       const result = await response.json();
 
