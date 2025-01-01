@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const middleware = async (request) => {
-  const token = cookies(request).get("next-auth.session-token");
+  const token = cookies(request).get("__Secure-next-auth.session-token");
   console.log("Middleware triggered for:", request.nextUrl.pathname);
   console.log("Token found:", token);
 
@@ -15,7 +15,10 @@ export const middleware = async (request) => {
 
   // Redirect to login if no token is present
   if (!token) {
-    const redirectURL = new URL(`/login?redirect=${encodeURIComponent(pathname)}`, request.nextUrl.origin);
+    const redirectURL = new URL(
+      `/login?redirect=${encodeURIComponent(pathname)}`,
+      request.nextUrl.origin
+    );
     return NextResponse.redirect(redirectURL);
   }
 
@@ -23,5 +26,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/products/:id"],
+  matcher: ["/dashboard/:path*", "/products/:id", "/my-orders/:path*","/products/:path*"],
 };

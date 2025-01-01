@@ -32,7 +32,7 @@ export const PATCH = async (request, { params }) => {
       { _id: new ObjectId(params.id) },
       { $set: { ...updateDoc } },
       { upsert: true }
-    );
+    ); 
 
     if (result.matchedCount === 0 && !result.upsertedId) {
       return NextResponse.json({ message: "Order not found" }, { status: 404 });

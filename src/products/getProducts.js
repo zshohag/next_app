@@ -27,15 +27,3 @@ export const getProductDetails = async (id) => {
     return { success: false, product: null, error: "Failed to fetch product" };
   }
 };
-
-// export const getProductDetails = async (id) => {
-//   try {
-//     const res = await axios.get(
-//       `${process.env.NEXT_PUBLIC_API_URL}/products/api/${id}`
-//     );
-//     return { success: true, product: res.data };
-//   } catch (error) {
-//     console.error("Error fetching product:", error);
-//     return { success: false, product: null, error: "Failed to fetch product" };
-//   }
-// };
