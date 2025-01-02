@@ -45,14 +45,14 @@ const CheckoutPage = ({ product, params }) => {
       productName: product.name,
       productID: product._id,
       category: product.category,
-      image:product.image,
+      image: product.image,
       price: product.price,
       quantity: confirmedQuantity, // Use confirmed quantity
     };
     console.log(newOrder);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/checkout/api/new-order`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api/new-order`,
         {
           method: "POST",
           headers: {
@@ -61,7 +61,6 @@ const CheckoutPage = ({ product, params }) => {
           body: JSON.stringify(newOrder),
         }
       );
-      
 
       const result = await response.json();
       console.log(result);

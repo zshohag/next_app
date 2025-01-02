@@ -3,7 +3,7 @@ import axios from "axios";
 export const getProducts = async () => {
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/api/get-all`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/get-all`
     );
     return res.data;
   } catch (error) {
@@ -15,7 +15,7 @@ export const getProducts = async () => {
 export const getProductDetails = async (id) => {
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/api/${id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/${id}`
     );
 
     // Extract the inner 'product' key here
