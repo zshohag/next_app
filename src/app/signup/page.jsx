@@ -41,7 +41,7 @@ const SignUpPage = () => {
 
       // Build the API URL dynamically using the environment variable
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`,
+        `${process.env.NEXT_PUBLIC_API_URL}/signup/api`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

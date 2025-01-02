@@ -19,7 +19,7 @@ const Page = () => {
     }
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/my-orders/api/${session?.user?.email}`
+        `${process.env.NEXT_PUBLIC_API_URL}/my-orders/api/${session?.user?.email}`
       );
       const data = await res.json();
       setOrders(data?.myOrders || []);

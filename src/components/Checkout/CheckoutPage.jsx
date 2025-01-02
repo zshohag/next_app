@@ -52,7 +52,7 @@ const CheckoutPage = ({ product, params }) => {
     console.log(newOrder);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api/new-order`,
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout/api/new-order`,
         {
           method: "POST",
           headers: {
@@ -61,6 +61,7 @@ const CheckoutPage = ({ product, params }) => {
           body: JSON.stringify(newOrder),
         }
       );
+      console.log('response',response);
 
       const result = await response.json();
       console.log(result);
@@ -261,3 +262,4 @@ const CheckoutPage = ({ product, params }) => {
 };
 
 export default CheckoutPage;
+
